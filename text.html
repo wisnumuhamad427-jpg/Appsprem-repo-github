@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💫PRODUCTLIST APPS PREM💫</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(-45deg, #001220, #00334e, #004d73, #006699);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #fff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .star {
+            position: absolute;
+            background-color: #fff;
+            border-radius: 50%;
+            animation: twinkle linear infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 20px;
+            position: relative;
+        }
+        
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            color: #fff;
+            text-shadow: 0 0 10px #00f3ff, 0 0 20px #00f3ff, 0 0 30px #00f3ff;
+            animation: neon 1.5s ease-in-out infinite alternate;
+        }
+        
+        @keyframes neon {
+            from { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #00f3ff, 0 0 20px #00f3ff; }
+            to { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #00f3ff, 0 0 40px #00f3ff; }
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #00e6ff;
+            text-shadow: 0 0 5px #00f3ff;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-btn {
+            background: rgba(0, 247, 255, 0.2);
+            border: 2px solid #00f3ff;
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 5px #00f3ff;
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+        }
+        
+        .nav-btn:hover {
+            background: rgba(0, 247, 255, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.8);
+        }
+        
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 147, 255, 0.2);
+            border: 2px solid #0093ff;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 5px #0093ff;
+            box-shadow: 0 0 10px rgba(0, 147, 255, 0.5);
+        }
+        
+        .social-btn:hover {
+            background: rgba(0, 147, 255, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px rgba(0, 147, 255, 0.8);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        section {
+            background: rgba(0, 13, 26, 0.7);
+            border: 1px solid #00f3ff;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+        
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: #00f3ff;
+            margin-bottom: 25px;
+            text-align: center;
+            text-shadow: 0 0 10px #00f3ff;
+            font-size: 2rem;
+        }
+        
+        h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: #00e6ff;
+            margin: 20px 0 15px;
+            text-shadow: 0 0 5px #00e6ff;
+            font-size: 1.5rem;
+        }
+        
+        .product-list, .benefit-list, .language-list {
+            list-style-type: none;
+        }
+        
+        .product-list li, .benefit-list li, .language-list li {
+            background: rgba(0, 40, 80, 0.4);
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #00f3ff;
+            transition: transform 0.3s ease;
+        }
+        
+        .product-list li:hover, .benefit-list li:hover, .language-list li:hover {
+            transform: translateX(10px);
+            background: rgba(0, 40, 80, 0.6);
+        }
+        
+        .payment-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .qris-code {
+            max-width: 250px;
+            border: 3px solid #00f3ff;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
+        }
+        
+        .copy-btn {
+            background: rgba(0, 247, 255, 0.2);
+            border: 2px solid #00f3ff;
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 5px #00f3ff;
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .copy-btn:hover {
+            background: rgba(0, 247, 255, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.8);
+        }
+        
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 247, 255, 0.9);
+            color: #001220;
+            padding: 10px 20px;
+            border-radius: 30px;
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.8);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .notification.show {
+            opacity: 1;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            border-top: 1px solid #00f3ff;
+            background: rgba(0, 13, 26, 0.7);
+        }
+        
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            nav {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .social-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    
+    <header>
+        <h1 class="logo">WISNU APPSPREM STORE WEBSITE</h1>
+        <p class="subtitle">Menyediakan berbagai produk dan jasa digital berkualitas tinggi</p>
+        
+        <nav>
+            <button class="nav-btn" onclick="scrollToSection('products')">📦 All Produk apps prem</button>
+            <button class="nav-btn" onclick="scrollToSection('services')">🛠️ Jasa By wisnu</button>
+            <button class="nav-btn" onclick="scrollToSection('reseller')">⚔️ canva & Benefits</button>
+            <button class="nav-btn" onclick="scrollToSection('benefits')">👾alight motion & Benefits</button>
+            <button class="nav-btn" onclick="scrollToSection('tk')">💫capcut & benefit.</button>
+            <button class="nav-btn" onclick="scrollToSection('ceo')">🌊youtube pro& Benefits</button>     
+            <button class="nav-btn" onclick="scrollToSection('spotify)">🎗spotify & Benefits</button>
+            <button class="nav-btn" onclick="scrollToSection('mods')">⚙️wink pro & Benefits</button>
+            <button class="nav-btn" onclick="scrollToSection('netfix')">⚙️netfix & Benefits</button>
+            <button class="nav-btn" onclick="scrollToSection('chatgpt')">⚙️chatgpt  & Benefits</button>
+            <button class="nav-btn" onclick="scrollToSection('viu')">⚙️viu & Benefits</button>
+            <button class="nav-btn" onclick="scrollToSection('disney')">⚙️disney & Benefits</button>
+            <button class="nav-btn" onclick="scrollToSection('wibuku')">⚙️wibuku & Benefits</button>
+            <button class="nav-btn" onclick="scrollToSection('Duolingo')">⚙️ Duolingo & Benefits</button>
+            <button class="nav-btn" onclick="scrollToSection('picsart')">⚙️ picsart & Benefits</button>
+            <button class="nav-btn" onclick="scrollToSection('languages')">💻 my friend best</button>
+            <button class="nav-btn" onclick="scrollToSection('vidio')">⚙️prime vidio & Benefits</button>
+            <button class="nav-btn" onclick="scrollToSection('wetv')">⚙️wetv & Benefits</button>
+            <button class="nav-btn" onclick="scrollToSection('payment')">💳 Payment</button>
+            <button class="nav-btn" onclick="scrollToSection('mylove')">quoutes By wisGetXzu🪪</button>
+        </nav>
+        
+        <div class="social-buttons">
+            <a href="https://t.me/getzuro_crash" class="social-btn" target="_blank">
+                <i class="fab fa-telegram"></i> OWNER TELE
+            </a>
+            <a href="https://wa.me/6285764728526" class="social-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i> OWNER WEB
+            </a>
+        </div>
+    </header>
+    
+    <div class="container">
+        <section id="products">
+            <h2>📦 ALL PRODUK WISNU TECH</h2>
+            <ul class="product-list">
+                <li>🔍 HTML HACK CAMERA</li>
+                <li>💳 MURBUG (MURID BUG)</li>
+                <li>😈 MURID SUNTIK SOSMED</li>
+                <li>📊 SC WisGetXZu Pro </li>
+                <li>🌪️ WEB STORE HTML</li>
+                <li>⚡ WEB PAYMENT HTML</li>
+                <li>👤 APPS PREM</li>
+                <li>☁ FILE WEBSITE PHISHING</li>
+                <li>🌊 NOKOS ALL REGION</li>
+                <li>💥 SC OBF NO ENC PRIV</li>
+                <li>🎗 WEB CREATE WEBSITE</li>
+                <li>🎫 SC CPANEL NO PASARAN</li>
+                <li>⚙️ SC MD WHATSAPP</li>
+            </ul>
+        </section>
+        
+        <section id="services">
+            <h2>🛠️ ALL PRODUK JASA</h2>
+            <ul class="product-list">
+                <li>🌐 JASA LACAK nomor</li>
+                <li>🐞 JASA CREATE WEBSITE DEPLOY WEB & BUG</li>
+                <li>🤖 JASA PEMBUATAN BOT WHATSAPP BUG</li>
+                <li>🔓 JASA UNBAN/BAN</li>
+                <li>🕷️ JASA BUG WHATSAPP</li>
+                <li>🔧 JASA FIX SCRIPT EROR</li>
+                <li>📽 JASA POST Tiktok speck pengikut 1,9rb</li>
+                <li>🖊 JASA RENAME SCRIPT NO ENC</li>
+                <li>🔗 JASA SUNTIK ALL SOSMED</li>
+            </ul>
+        </section>
+        
+        <section id="reseller">
+            <h2>⚔️ CANVA PRO 1BULAN: 3K</h2>
+            <ul class="reseller-section">
+            <a href="https://wa.me/6285764728526" class="social-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i> support all device,full garansi,legal 100%,lancar abis
+            </a>
+            </ul>
+        </section>
+        
+        <section id="benefits">
+            <h2>⭐  ALIGHT MOTION 1TAHUN: 4K</h2>
+            <ul class="benefit-section">
+            <a href="https://wa.me/6285764728526" class="social-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i> unlocked all pro,bergaransi,100% legal,resmi
+            </a>
+            </ul>
+        </section>
+    
+           <section id="tk">
+            <h2>👨‍🔧 CAPCUT PRO 1BULAN: 8K</h2>
+            <ul class="tk-section">
+            <a href="https://wa.me/6285764728526" class="social-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i> support all devide,100% legal,bergaransi,unlock all pro
+            </a>
+              </ul>
+        </section>
+    
+            <section id="ceo">
+            <h2>🍻 YOUTUBE PRO 1BULAN : 6K</h2>
+            <ul class="ceo-section">
+            <a href="https://wa.me/6285764728526" class="social-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i> unlock pro,anti iklan,bergaransi,resmi 100%, resolusi tinggi
+            </a>
+            </ul>
+        </section>
+        
+        <section id="spotify">
+            <h2>🍻 spotify : 25K</h2>
+            <ul class="ceo-section">
+            <a href="https://wa.me/6285764728526" class="social-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i> FULL GARANSI,SUPPORT IOS & ANDRO,100% legal,anti down
+            </a>
+            </ul>
+        </section>
+        
+                <section id="ptprib">
+            <h2>✨ WINK PRO 1BULAN: 12K</h2>
+            <ul class="ptprib-section">
+            <a href="https://wa.me/6285764728526" class="social-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i> unlock all pro,bergaransi,100% resmi berbagai daerah & world,resolusi tinggi
+            </a>
+            </ul>
+        </section>
+        
+               <section id="netfix">
+            <h2>✨ Netflix 1BULAN: 33K</h2>
+            <ul class="ptprib-section">
+            <a href="https://wa.me/6285764728526" class="social-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i> unlock all movie,100% bergaransi,anti down,support ios & andorid,resolusi tinggi
+            </a>
+            </ul>
+        </section>
+        
+         <section id="chatgpt">
+            <h2>✨ CHATGPT 1BULAN: 16K</h2>
+            <ul class="ptprib-section">
+            <a href="https://wa.me/6285764728526" class="social-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i> stabil anti down,bergaransi,100% legal,support all devide,keamanan ketat
+            </a>
+            </ul>
+        </section>
+        
+         <section id="viu">
+            <h2>✨ viu pro 1tahun: 4K</h2>
+            <ul class="ptprib-section">
+            <a href="https://wa.me/6285764728526" class="social-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i> bisa nonton sepuasnya,resolusi tinggi,keamanan ketat,Bergaransi,resmi dan legal
+            </a>
+            </ul>
+        </section>
+        
+          <section id="disney">
+            <h2>☄️DISNEY 1BULAN : 16K</h2>
+            <ul class="mods-section">
+            <a href="https://wa.me/6285764728526" class="social-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i> unlock all movie,anti down,Bergaransi,resmi,resolusi tinggi
+            </a>
+            </ul>
+        </section>
+        
+        <section id="wibuku">
+            <h2>☄️WIBUKU 1BULAN : 13K</h2>
+            <ul class="mods-section">
+            <a href="https://wa.me/6285764728526" class="social-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i> unlock all movie& anime,anti down,Bergaransi,resmi,resolusi tinggi,berlisensi tinggi
+            </a>
+            </ul>
+        </section>
+        
+        <section id="Duolingo">
+            <h2>☄️DUOLINGO 1BULAN : 8K</h2>
+            <ul class="mods-section">
+            <a href="https://wa.me/6285764728526" class="social-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i> unlock all ,anti down,Bergaransi,resmi & berlisensi
+            </a>
+            </ul>
+        </section>
+        
+        <section id="picsart">
+            <h2>☄️PICSART 1BULAN : 7K</h2>
+            <ul class="mods-section">
+            <a href="https://wa.me/6285764728526" class="social-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i> unlock all,anti down,Bergaransi,resmi,resolusi tinggi
+            </a>
+            </ul>
+        </section>
+        
+        <section id="vidio">
+            <h2>☄️PRIME VIDEO 1BULAN : 10K</h2>
+            <ul class="mods-section">
+            <a href="https://wa.me/6285764728526" class="social-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i> unlock all movie,anti down,Bergaransi,resmi,resolusi tinggi
+            </a>
+            </ul>
+        </section>
+        
+        <section id="wetv">
+            <h2>☄️WETV 1BULAN : 11K</h2>
+            <ul class="mods-section">
+            <a href="https://wa.me/6285764728526" class="social-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i> unlock all movie,anti down,Bergaransi,resmi,resolusi tinggi
+            </a>
+            </ul>
+        </section>
+        
+        <section id="languages">
+            <h2>💻 LIST MY FRIEND </h2>
+            <ul class="language-list">
+                <li>🔷 N4tzzOfficial | S.GPT</li>
+                <li>🐘 TAYAKA DEVELOPER</li>
+                <li>🌐 TAMZ DEVELOPER</li>
+            </ul>
+        </section>
+        
+        <section id="payment">
+            <h2>💳 PAYMENT WISNU TECH</h2>
+            <div class="payment-section">
+                <p>Nomor Dana: <strong>085767064911</strong></p>
+                <button class="copy-btn" onclick="copyDanaNumber()">
+                    <i class="fas fa-copy"></i> Salin Nomor Dana
+                </button>
+                <div class="payment-section">
+                <p>Nomor Ovo: <strong>08xxx/tidak tersedia</strong></p>
+                <button class="copy-btn" onclick="copyovoNumber()">
+                    <i class="fas fa-copy"></i> Salin Nomor Ovo
+                </button>
+                <div class="payment-section">
+                <p>Nomor Gopay: <strong>08xxx/tidak tersedia</strong></p>
+                <button class="copy-btn" onclick="copyGopayNumber()">
+                    <i class="fas fa-copy"></i> Salin Nomor Gopay
+                </button>
+                <img src="https://tmpfiles.org/dl/wUweM6wPDA8e/1781316112445.jpg" alt="QRIS Payment" class="qris-code">
+                <p>Scan QRIS di atas untuk pembayaran</p>
+            </div>
+        </section>
+    </div>
+    
+            <section id="mylove">
+            <div class="mylove-section">
+            <h2>🪽WisGetXZu Developer🪽</h2>
+            </li>🫧Website Hosting apps prem🫧</li>
+            <img src="https://tmpfiles.org/dl/wGwQMXwqX4j4/1781315207132.jpg" alt="Pict My Live" class="qris-code">
+                <p>"𝙨𝙚𝙨𝙪𝙖𝙩𝙪 𝙮𝙖𝙣𝙜 𝙗𝙚𝙧𝙡𝙚𝙗𝙞𝙝𝙖𝙣 𝙞𝙩𝙪 𝙩𝙞𝙙𝙖𝙠 𝙗𝙖𝙞𝙠,, 𝙘𝙤𝙣𝙩𝙤𝙝𝙣𝙮𝙖 𝘽𝙀𝙍𝙃𝘼𝙍𝘼𝙋 𝙗𝙚𝙧𝙡𝙚𝙗𝙞𝙝𝙖𝙣 𝙠𝙚𝙥𝙖𝙙𝙖 𝙨𝙚𝙤𝙧𝙖𝙣𝙜 𝙬𝙖𝙣𝙞𝙩𝙖"</p>
+            </div>
+        </section>
+    </div>
+    
+    <div class="notification" id="notification">Nomor berhasil disalin!</div>
+    
+    <footer>
+        <p>© 2026 WisGetXzu Dev - All Rights </p>
+    </footer>
+
+    <script>
+        // Membuat efek bintang
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const starsCount = 150;
+            
+            for (let i = 0; i < starsCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                const size = Math.random() * 3;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                
+                star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                star.style.animationDelay = `${Math.random() * 2}s`;
+                
+                starsContainer.appendChild(star);
+            }
+        }
+        
+        function checkScroll() {
+            const sections = document.querySelectorAll('section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (sectionTop < windowHeight * 0.85) {
+                    section.classList.add('visible');
+                }
+            });
+        }
+        
+        // Scroll ke section
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+        
+        // Salin nomor Dana
+        function copyDanaNumber() {
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = '085767064911';
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+            
+                        const notification = document.getElementById('notification');
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 2000);
+        }
+            
+              // Salin nomor ovo
+        function copyovoNumber() {
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = 'tidak tersedia';
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+            
+                        const notification = document.getElementById('notification');
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 2000);
+        }
+            
+              // Salin nomor Gopay
+        function copyGopayNumber() {
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = '085767064911';
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+            
+            const notification = document.getElementById('notification');
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 2000);
+        }
+      
+        window.onload = function() {
+            createStars();
+            checkScroll();
+        };
+        
+        window.addEventListener('scroll', checkScroll);
+    </script>
+</body>
+</html>
